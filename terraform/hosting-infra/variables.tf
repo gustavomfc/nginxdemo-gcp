@@ -62,3 +62,33 @@ variable "cluster_subnet_pods_ip_cidr" {
   description = "The IP CIDR range for pods in the cluster subnet"
   default     = "10.250.0.0/16"
 }
+
+variable "bastion_sa_name" {
+  type        = string
+  description = "The name of the service account to create for the bastion host"
+  default     = "task1-bastion-sa"
+}
+
+variable "bastion_vm_name" {
+  type        = string
+  description = "The name of the bastion host VM"
+  default     = "task1-bastion"
+}
+
+variable "bastion_vm_zone" {
+  type        = string
+  description = "The zone where the bastion host VM will be created"
+  default     = "us-east1-b"
+}
+
+variable "bastion_subnet_name" {
+  type        = string
+  description = "The name of the subnet that will be created to host the bastion VM"
+  default     = "task1-bastion-us-e1-subnet"
+}
+
+variable "bastion_subnet_ip_cidr" {
+  type        = string
+  description = "The IP CIDR range for the bastion subnet. A /29 CIDR is recommended"
+  default     = "10.100.0.0/29"
+}
