@@ -1,5 +1,5 @@
 locals {
-    bastion_sa_display_name = var.bastion_sa_display_name != "" ? var.bastion_sa_display_name : var.bastion_sa_name
+  bastion_sa_display_name = var.bastion_sa_display_name != "" ? var.bastion_sa_display_name : var.bastion_sa_name
 }
 
 resource "google_service_account" "bastion_sa" {
@@ -28,9 +28,9 @@ resource "google_compute_instance" "bastion_vm" {
   }
 
   scheduling {
-    preemptible = true
-    automatic_restart = false
-    provisioning_model = "SPOT"
+    preemptible                 = true
+    automatic_restart           = false
+    provisioning_model          = "SPOT"
     instance_termination_action = "STOP"
   }
 
