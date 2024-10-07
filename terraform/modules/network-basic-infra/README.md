@@ -1,6 +1,10 @@
-# GCP Basic Infra
+# GCP Basic Network Infrastructure
 
 This module intends to create the basic infra needed to host services that uses servers, properly in the cloud.
+
+### Minimum providers versions required:
+
+- hashicorp/google - 6.5.0
 
 ## Services Created
 
