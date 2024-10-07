@@ -61,6 +61,7 @@ with Diagram("Task 1 Cluster 1 Deployment", show=False):
                 service_account = ServiceAccount("task1-app-sa")
                 deployment = Deployment("task1-app-deployment")
                 service = SVC("task1-app-svc")
+                network_policies = CRD("task1-app-network-policies")
                 with Cluster("task1-app-deployment"):
                     replica_set = ReplicaSet("task1-app-replica-set")
                     with Cluster("task1-app-replica-set"):
@@ -80,5 +81,6 @@ with Diagram("Task 1 Cluster 1 Deployment", show=False):
     ssl_certificate - lb
     https_redirect - lb
 
-    service >> deployment >> replica_set >> pod
+    service >> deployment >> replica_set >> network_policies >> pod
+    pod >> network_policies >> internet
     service_account - pod
