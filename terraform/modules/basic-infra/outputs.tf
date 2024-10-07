@@ -1,3 +1,7 @@
+output "vpc_id" {
+  value = google_compute_network.vpc.id
+}
+
 output "routers_names" {
   value = values(google_compute_router.router).*.name
 }
