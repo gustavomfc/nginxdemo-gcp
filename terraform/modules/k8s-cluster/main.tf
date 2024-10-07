@@ -55,9 +55,9 @@ resource "google_container_cluster" "cluster" {
     }
 
     kubelet_config {
-      cpu_cfs_quota = false
+      cpu_cfs_quota                          = false
       insecure_kubelet_readonly_port_enabled = "TRUE" # Autopilot only accepts "True" in 6.5.0 provider version
-      pod_pids_limit = 0 # Autopilot only accepts "True" in 6.5.0 provider version
+      pod_pids_limit                         = 0      # Autopilot only accepts "True" in 6.5.0 provider version
     }
   }
 
@@ -81,14 +81,14 @@ resource "google_container_cluster" "cluster" {
   }
 
   private_cluster_config {
-    enable_private_nodes = true
+    enable_private_nodes    = true
     enable_private_endpoint = true
-    master_ipv4_cidr_block = var.cluster_controller_ipv4_cidr_block
+    master_ipv4_cidr_block  = var.cluster_controller_ipv4_cidr_block
   }
 
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block   = "10.0.0.0/8"
+      cidr_block = "10.0.0.0/8"
     }
   }
 
