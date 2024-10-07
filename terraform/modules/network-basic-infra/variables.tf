@@ -34,3 +34,9 @@ variable "router_name_prefix" {
   description = "The prefix for the router name. Default: <vpc_name>-router"
   default     = ""
 }
+
+variable "global_proxy_only_subnet_ip_cidr" {
+  type        = string
+  description = "The IP CIDR range for the global proxy only subnet | Optional: If not set it will defautls to 100.64.0.0/24"
+  default     = "100.64.0.0/24"
+}
