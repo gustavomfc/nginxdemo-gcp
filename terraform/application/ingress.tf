@@ -64,7 +64,7 @@ resource "kubernetes_manifest" "app_ingress" {
         "kubernetes.io/ingress.global-static-ip-name" = google_compute_global_address.ext_ip_address.name,
         "networking.gke.io/managed-certificates"      = "app-tls-cert",
         "kubernetes.io/ingress.class"                 = "gce"
-        "networking.gke.io/v1beta1.FrontendConfig" = kubernetes_manifest.https_redirect.manifest.metadata.name
+        "networking.gke.io/v1beta1.FrontendConfig"    = kubernetes_manifest.https_redirect.manifest.metadata.name
       }
     }
     "spec" = {
