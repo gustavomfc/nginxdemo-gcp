@@ -39,6 +39,18 @@ variable "cluster_subnet_name" {
   default     = "task1-cluster-us-e1-subnet"
 }
 
+variable "cluster_controller_subnet_name" {
+  type        = string
+  description = "The name of the controller cluster subnet"
+  default     = "task1-cluster-controller-us-e1-subnet"
+}
+
+variable "cluster_controller_ipv4_cidr_block" {
+  type        = string
+  description = "The IP CIDR range for the controller in the cluster subnet"
+  default     = "10.200.0.0/28"
+}
+
 variable "cluster_subnet_primary_ip_cidr" {
   type        = string
   description = "The primary IP CIDR range of the cluster subnet"
