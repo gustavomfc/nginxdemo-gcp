@@ -43,3 +43,17 @@ resource "google_compute_router_nat" "nat" {
     google_compute_router.router
   ]
 }
+
+resource "google_compute_subnetwork" "global_proxy_only_subnet" {
+
+  name          = "global-proxy-only-subnet"
+  ip_cidr_range = var.global_proxy_only_subnet_ip_cidr
+  region        = "us-east1"
+  purpose       = "GLOBAL_MANAGED_PROXY"
+  role          = "ACTIVE"
+  network       = google_compute_network.vpc_network.id
+
+  depends_on = [
+    google_compute_network.vpc_network
+  ]
+}
