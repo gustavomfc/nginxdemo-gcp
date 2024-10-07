@@ -45,6 +45,20 @@ resource "google_container_cluster" "cluster" {
       "https://www.googleapis.com/auth/servicecontrol",
       "https://www.googleapis.com/auth/trace.append",
     ]
+
+    gvnic {
+      enabled = true
+    }
+
+    reservation_affinity {
+      consume_reservation_type = "NO_RESERVATION"
+    }
+
+    kubelet_config {
+      cpu_cfs_quota = false
+      insecure_kubelet_readonly_port_enabled = "TRUE" # Autopilot only accepts "True" in 6.5.0 provider version
+      pod_pids_limit = 0 # Autopilot only accepts "True" in 6.5.0 provider version
+    }
   }
 
   cluster_autoscaling {
