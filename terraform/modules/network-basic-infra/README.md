@@ -11,6 +11,9 @@ This module intends to create the basic infra needed to host services that uses 
 - VPC
 - Cloud Router
 - Cloud NAT
+- Global Proxy Only Subnet
+- IAP Ingress firewall rule
+- Web egress firewall rule
 
 ## Module Inputs
 
@@ -20,6 +23,7 @@ This module intends to create the basic infra needed to host services that uses 
 - ```auto_create_subnetworks``` - Whether to create subnetworks automatically. By default this is set to ```False```. (https://cloud.google.com/vpc/docs/create-modify-vpc-networks#create-auto-network)
 - ```routing_mode``` - The VPC routing mode. By default this is set to ```GLOBAL```. 
 - ```router_name_prefix``` - The prefix that will be used to name the Routers created. By default this prefix will be: ```<vpc-name>-router```
+- global_proxy_only_subnet_ip_cidr - The IP CIDR to be used by the Global Proxy Only Subnet. If not set, it will defaults to ```100.64.0.0/24``` (A non RFC-1918 CIDR, but it's private, as this range is reserved to be used by carriers in CGNAT, which means it's not routed in the public networks)
 
 ## Module Outputs
 
