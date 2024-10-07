@@ -66,14 +66,9 @@ resource "kubernetes_deployment" "app_deployment" {
           }
 
           resources {
-            limits = {
-              cpu               = "0.5"
-              memory            = "512Mi"
-              ephemeral-storage = "1Gi"
-            }
             requests = {
-              cpu               = "0.25"
-              memory            = "256Mi"
+              cpu               = "0.5"
+              memory            = "1Gi"
               ephemeral-storage = "1Gi"
             }
           }
