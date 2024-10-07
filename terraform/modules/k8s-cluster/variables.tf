@@ -49,3 +49,8 @@ variable "cluster_subnet_pods_ip_cidr" {
   type        = string
   description = "The IP CIDR range for pods in the cluster subnet"
 }
+
+variable "cluster_controller_ipv4_cidr_block" {
+  type        = string
+  description = "The IP CIDR range for the master in the cluster subnet"
+}

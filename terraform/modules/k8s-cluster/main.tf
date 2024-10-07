@@ -38,13 +38,44 @@ resource "google_container_cluster" "cluster" {
   node_config {
     service_account = google_service_account.nodes_sa.email
     oauth_scopes = [
-      "https://www.googleapis.com/auth/cloud-platform"
+      "https://www.googleapis.com/auth/devstorage.read_only",
+      "https://www.googleapis.com/auth/logging.write",
+      "https://www.googleapis.com/auth/monitoring",
+      "https://www.googleapis.com/auth/service.management.readonly",
+      "https://www.googleapis.com/auth/servicecontrol",
+      "https://www.googleapis.com/auth/trace.append",
     ]
+  }
+
+  cluster_autoscaling {
+    auto_provisioning_defaults {
+      service_account = google_service_account.nodes_sa.email
+      oauth_scopes = [
+        "https://www.googleapis.com/auth/devstorage.read_only",
+        "https://www.googleapis.com/auth/logging.write",
+        "https://www.googleapis.com/auth/monitoring",
+        "https://www.googleapis.com/auth/service.management.readonly",
+        "https://www.googleapis.com/auth/servicecontrol",
+        "https://www.googleapis.com/auth/trace.append",
+      ]
+    }
   }
 
   ip_allocation_policy {
     services_secondary_range_name = google_compute_subnetwork.cluster_subnet.secondary_ip_range[0].range_name
     cluster_secondary_range_name  = google_compute_subnetwork.cluster_subnet.secondary_ip_range[1].range_name
+  }
+
+  private_cluster_config {
+    enable_private_nodes = true
+    enable_private_endpoint = true
+    master_ipv4_cidr_block = var.cluster_controller_ipv4_cidr_block
+  }
+
+  master_authorized_networks_config {
+    cidr_blocks {
+      cidr_block   = "10.0.0.0/8"
+    }
   }
 
   timeouts {
@@ -56,4 +87,6 @@ resource "google_container_cluster" "cluster" {
     google_service_account.nodes_sa,
     google_compute_subnetwork.cluster_subnet,
   ]
+
+  deletion_protection = false
 }

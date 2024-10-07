@@ -21,6 +21,7 @@ This module intends to create a GKE Autopilot cluster
 - ```cluster_name``` - The name of the cluster that will be created
 - ```cluster_region``` - The region where the cluster will be created
 - ```cluster_subnet_name``` - The name of the subnet that will be crated to be used by the cluster
+- ```cluster_controller_ipv4_cidr_block``` - The CIDR of the subnet that will be created to be used by the controllers.
 - ```cluster_subnet_primary_ip_cidr``` - The primary CIDR of the subnet that will be created. This range is for the nodes usage
 - ```cluster_subnet_services_ip_cidr``` - The CIDR range for services in the cluster subnet | Optional: As this CIDR can be overlapped by other clusters, the default CIDR to services is 10.254.0.0/20
 - ```cluster_subnet_pods_ip_cidr``` - The CIDR that will be allocated to pods usage
